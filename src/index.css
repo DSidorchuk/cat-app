@@ -1,13 +1,58 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap');
+
+:root {
+  --family: 'Jost', sans-serif;
+  --pink-color: #FF868E;
+  --pink-color-light: #FBE0DC;
+  --green-color: #97EAB9;
+  --purple-color: #B4B7FF;
+  --orange-color: #FFD280;
+  --grey-color: #8C8C8C;
+  --grey-color-light: #F8F8F7;
+  --black-color: #1D1D1D;
+  --white-color: #fff;
+
+  --fs-xxl: 44px;
+  --fs-xl: 36px;
+  --fs-lg: 20px;
+  --fs-md: 16px;
+  --fs-sm: 12px;
+  --fs-xs: 10px;
+  --fw-light: 400;
+  --fw-bold: 500;
+
+  --rad-xs: 5px;
+  --rad-sm: 10px;
+  --rad-lg: 20px;
+  --rad-xl: 50px;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
 }
+
+body[data-theme='light'] {
+  background-color: var(--grey-color-light);
+  --bg-light: #fff;
+  --text-color-dark: #1D1D1D;
+  --text-color-light: #8C8C8C;
+}
+
+body[data-theme='dark'] {
+  background-color: var(--black-color);
+  --bg-light: rgba(255, 255, 255, 0.10);
+  --text-color-dark: #fff;
+  --text-color-light: #8C8C8C;
+}
+
+body {
+  margin: 0;
+  font-family: var(--family);
+
+}
+
+
+
+
+
