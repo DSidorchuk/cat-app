@@ -9,7 +9,9 @@
   --orange-color: #FFD280;
   --grey-color: #8C8C8C;
   --grey-color-light: #F8F8F7;
+  --grey-color-dark: rgba(255, 255, 255, 0.10);
   --black-color: #1D1D1D;
+  --black-color-light: #282828;
   --white-color: #fff;
 
   --fs-xxl: 44px;
@@ -34,22 +36,23 @@
 
 body[data-theme='light'] {
   background-color: var(--grey-color-light);
+  --bg-dark: #F8F8F7;
   --bg-light: #fff;
+  --bg-color: #FBE0DC;
   --text-color-dark: #1D1D1D;
-  --text-color-light: #8C8C8C;
 }
 
 body[data-theme='dark'] {
   background-color: var(--black-color);
-  --bg-light: rgba(255, 255, 255, 0.10);
+  --bg-dark: #1D1D1D;
+  --bg-light: rgba(255, 255, 255, 0.05);
+  --bg-color: rgba(255, 134, 142, 0.20);
   --text-color-dark: #fff;
-  --text-color-light: #8C8C8C;
 }
 
 body {
   margin: 0;
   font-family: var(--family);
-
 }
 
 

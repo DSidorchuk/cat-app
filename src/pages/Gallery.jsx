@@ -37,7 +37,7 @@ const UploadBtn = styled.button`
    height: 40px;
    border: none;
    border-radius: var(--rad-sm);
-   background-color: var(--pink-color-light);
+   background-color: var(--bg-color);
    cursor: pointer;
    display: flex;
    justify-content: space-between;
@@ -81,7 +81,7 @@ const FilterGrid = styled.div`
    grid-template-rows: repeat(2, 1fr);
    grid-gap: 10px 20px;
    border-radius: var(--rad-lg);
-   background-color: var(--grey-color-light);
+   background-color: var(--bg-light);
 `;
 
 const InputWrap = styled.div`
@@ -106,13 +106,20 @@ const Select = styled.select.attrs({size: 1})`
    height: 40px;
    border: none;
    border-radius: var(--rad-sm);
-   color: var(--black-color);
+   background-color: var(--bg-dark);
+   color: var(--text-color-dark);
    font-size: var(--fs-md);
    font-weight: var(--fw-light);
    cursor: pointer;
 
    & > option {
       padding: 0;
+   }
+   &:focus {
+      border: 2px solid ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
+   }
+   &:hover {
+      border: 2px solid ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    }
 `;
 
@@ -131,7 +138,7 @@ const UpdateBtn = styled.button`
    height: 40px;
    border: none;
    border-radius: var(--rad-sm);
-   background-color: var(--white-color);
+   background-color: var(--bg-dark);
    display: flex;
    justify-content: center;
    align-items: center;
@@ -150,6 +157,7 @@ const Gallery = () => {
    const [show, setShow] = useState(false);
    const {breeds, images, status, error} = useSelector(selectBreeds);
    const {localFav} = useSelector(selectFavourite);
+   const theme = useSelector((state) => state.theme);
    const {breed, limit, order} = useSelector(selectFilters);
 
    const loadImages = () => {
@@ -199,7 +207,11 @@ const Gallery = () => {
 
    return (
       <>
-         <UploadModal show={show} handleClose={closeModal}/>
+         <UploadModal 
+            show={show} 
+            handleClose={closeModal}
+            theme={theme}
+         />
          <FlexBox>
             <NavWrap>
                <LinkBack/>

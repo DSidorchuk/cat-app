@@ -27,6 +27,7 @@ const Voting = () => {
    const {breed, limit, order} = useSelector(selectFilters);
    const {images, status, error} = useSelector(selectBreeds);
    const {localFav, history} = useSelector(selectFavourite);
+   const theme = useSelector((state) => state.theme);
    const imgId = images[index]?.id;
    const favId = localFav?.[imgId];
 
@@ -85,8 +86,12 @@ const Voting = () => {
                onFav={toggleFavourite}
                onDown={() => onLikeImg(-1)}
                onUp={() => onLikeImg(1)}
+               theme={theme}
             />
-            <VoteHistory history={history}/>
+            <VoteHistory 
+               history={history}
+               theme={theme}
+            />
          </Grid>}
       </>
    )

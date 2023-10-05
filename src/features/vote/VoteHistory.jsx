@@ -17,7 +17,7 @@ const RecordWrapper = styled.div`
    width: 640px;
    height: 60px;
    padding: 0 20px 0 15px;
-   background-color: var(--grey-color-light);
+   background-color: ${({theme}) => theme === 'light' ? 'var(--bg-dark)' : 'var(--bg-light)'};
    border-radius: var(--rad-sm);
    align-items: center;
    display: grid;
@@ -39,9 +39,9 @@ const Time = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: var(--white-color);
+   background-color: ${({theme}) => theme==='light' ? 'var(--bg-light)' : 'var(--bg-dark)'};
    border-radius: var(--rad-xs);
-   color: var(--black-color);
+   color: var(--text-color-dark);
    font-size: var(--fs-md);
    font-weight: var(--fw-light);
 `;
@@ -52,7 +52,7 @@ const Record = styled.p`
    font-weight: var(--fw-light);
 
    & > span {
-      color: var(--black-color);
+      color: var(--text-color-dark);
       font-weight: var(--fw-bold);
    }
 `;
@@ -67,7 +67,7 @@ const IconWrapper = styled.div`
    }
 `;
 
-const VoteRecord = ({type, id, time}) => {
+const VoteRecord = ({type, id, time, theme}) => {
 
    let descr;
    let Icon;
@@ -96,8 +96,8 @@ const VoteRecord = ({type, id, time}) => {
    }
 
    return (
-      <RecordWrapper>
-         <Time>{time}</Time>
+      <RecordWrapper theme={theme}>
+         <Time theme={theme}>{time}</Time>
          <RecordBox>
             <Record>Image ID: <span>{id}</span> {descr} </Record>
             <IconWrapper>
@@ -108,7 +108,7 @@ const VoteRecord = ({type, id, time}) => {
    )
 }
 
-const VoteHistory = ({history}) => {
+const VoteHistory = ({history, theme}) => {
    return (
       <Grid>
          {history.length > 0 && history.map((item) => {
@@ -118,6 +118,7 @@ const VoteHistory = ({history}) => {
                   type={item.type}
                   id={item.id}
                   time={item.time}
+                  theme={theme}
                />
             )
          })}

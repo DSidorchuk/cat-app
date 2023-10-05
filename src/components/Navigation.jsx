@@ -23,13 +23,12 @@ const ImgBox = styled.div`
    align-items: center;
 `;
 
-
 const Link = styled(NavLink)`
    width: 138px;
    height: 36px;
    border: none;
    border-radius: var(--rad-sm);
-   background-color: var(--white-color);
+   background-color: ${({theme}) => theme === 'light' ? "var(--bg-light)" : 'var(--grey-color-dark)'};
    color: var(--pink-color);
    font-size: var(--fs-sm);
    font-weight: var(--fw-bold);
@@ -56,26 +55,32 @@ const Wrapper = styled.div`
    row-gap: 10px;
 `;
 
-const Navigation = () => {
+const Navigation = ({theme}) => {
    return (
       <FlexBox>
          <Wrapper>
             <ImgBox color='var(--purple-color)'>
                <img src={voting} alt="voting"/>
             </ImgBox>
-            <Link to='/content/voting'>VOTING</Link>
+            <Link to='/content/voting' theme={theme}>
+               VOTING
+            </Link>
          </Wrapper>
          <Wrapper>
             <ImgBox color='var(--green-color)'>
                <img src={breeds} alt="breeds"/>
             </ImgBox>
-            <Link to='content/breeds'>BREEDS</Link>
+            <Link to='content/breeds' theme={theme}>
+               BREEDS
+            </Link>
          </Wrapper>
          <Wrapper>
             <ImgBox color='var(--orange-color)'>
                <img src={gallery} alt="gallery"/>
             </ImgBox>
-            <Link to='content/gallery'>GALLERY</Link>
+            <Link to='content/gallery' theme={theme}>
+               GALLERY
+            </Link>
          </Wrapper>
       </FlexBox>
    )

@@ -12,7 +12,7 @@ const Wrapper = styled.div`
    height: 80px;
    background-color: var(--white-color);
    border-radius: var(--rad-lg);
-   border: 4px solid var(--white-color);
+   border: 4px solid ${({theme}) => theme === 'light' ? 'var(--bg-light)' : 'var(--black-color-light)'};
    overflow: hidden;
    position: absolute;
    top: 320px;
@@ -67,11 +67,11 @@ const DownBtn = styled(Button)`
    background-color: var(--orange-color);
 `;
 
-const VoteBox = ({onUp, onFav, onDown, active}) => {
+const VoteBox = ({onUp, onFav, onDown, active, theme}) => {
    const FavoriteIcon = () => active ? <IconWhiteheart/> : <IconHeart/>;
 
    return (
-      <Wrapper>
+      <Wrapper theme={theme}>
          <BtnWrapper 
             color='var(--green-color)'
             onClick={onUp}

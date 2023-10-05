@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ImageGrid } from "../components/ImageGrid";
 import { BreedImage } from "../components/BreedImage";
@@ -25,7 +25,7 @@ const BreedSelect = styled.select.attrs({size: 1})`
    height: 40px;
    border-radius: var(--rad-sm);
    border: none;
-   background-color: var(--grey-color-light);
+   background-color: var(--bg-light);
    color: var(--grey-color);
    outline: none;
 
@@ -35,10 +35,10 @@ const BreedSelect = styled.select.attrs({size: 1})`
    }
 
    &:focus {
-      border: 2px solid var(--pink-color-light);
+      border: 2px solid ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    }
    &:hover {
-      border: 2px solid var(--pink-color-light);
+      border: 2px solid ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    }
 `;
 
@@ -51,7 +51,7 @@ const Order = styled.span`
    width: 40px;
    height: 40px;
    border-radius: var(--rad-sm);
-   background-color: var(--grey-color-light);
+   background-color: var(--bg-light);
    display: flex;
    justify-content: center;
    align-items: center;
@@ -66,6 +66,7 @@ const Order = styled.span`
 
 const Breeds = () => {
    const dispatch = useDispatch();
+   const theme = useSelector((state) => state.theme);
    const [breeds, images, status, error, breed, limit, order] = useBreeds();
 
    const selectBreed = (e) => {
@@ -89,7 +90,11 @@ const Breeds = () => {
          <FlexBox>
             <LinkBack/>
             <NavSpan>BREEDS</NavSpan>
-            <BreedSelect defaultValue={breed} onChange={selectBreed}>
+            <BreedSelect 
+               defaultValue={breed} 
+               onChange={selectBreed}
+               theme={theme}
+            >
                {breeds.map((item) => {
                   return (
                      <option key={item.id} value={item.id}>{item.name}</option>
@@ -114,7 +119,12 @@ const Breeds = () => {
             <ImageGrid size={limit}>
                {images.map((item, i) => {
                      return (
-                        <BreedImage key={item.id} {...item} grid={i}/>
+                        <BreedImage 
+                           key={item.id} 
+                           {...item} 
+                           grid={i}
+                           theme={theme}
+                        />
                      )
 
                })}

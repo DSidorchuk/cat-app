@@ -2,8 +2,6 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-
-import btnBg from "../assets/unfavourite.png"
 import {ReactComponent as EmptyHeart} from "../assets/empty-heart.svg";
 import {ReactComponent as FullHeart} from "../assets/full-heart.svg";
 
@@ -57,7 +55,7 @@ const BreedLink = styled(Link)`
    width: 180px;
    height: 34px;
    border-radius: var(--rad-sm);
-   background-color: var(--white-color);
+   background-color: ${({theme}) => theme === 'light' ? "var(--bg-dark)" : 'var(--black-color-light)'};
    text-decoration: none;
    color: var(--pink-color);
    font-size: var(--fs-md);
@@ -86,8 +84,7 @@ const UnFavBtn = styled.button`
    display: none;
    border: none;
    border-radius: var(--rad-sm);
-   // background-image: url(${btnBg});
-   background-color: var(--white-color);
+   background-color: ${({theme}) => theme === 'light' ? 'var(--white-color)' : 'var(--black-color-light)'};
    justify-content: center;
    align-items: center;
    width: 40px;
@@ -100,11 +97,13 @@ const UnFavBtn = styled.button`
    cursor: pointer;
 `;
 
-const BreedImage = ({url, id, breed, breedId, grid}) => {
+const BreedImage = ({url, breed, breedId, grid, theme}) => {
    return (
       <Wrapper grid={grid}>
          <Image src={url} alt={breed}/>
-         <BreedLink to={`/content/breeds/${breedId}`}>{breed}</BreedLink>
+         <BreedLink to={`/content/breeds/${breedId}`} theme={theme}>
+            {breed}
+         </BreedLink>
       </Wrapper>
    )
 }
@@ -117,7 +116,7 @@ const StaticBreedImage = ({id, url, grid}) => {
    )
 }
 
-const FavouriteBreedImage = ({url, id, grid, unFav, favourite}) => {
+const FavouriteBreedImage = ({url, id, grid, unFav, favourite, theme}) => {
    const [fav, setFav] = useState(favourite);
 
    const handleClick = () => {
@@ -128,7 +127,7 @@ const FavouriteBreedImage = ({url, id, grid, unFav, favourite}) => {
    return (
       <FavWrapper grid={grid}>
          <Image src={url} alt={id}/>
-         <UnFavBtn onClick={handleClick}>
+         <UnFavBtn onClick={handleClick} theme={theme}>
             {fav ? <FullHeart/> : <EmptyHeart/>}
          </UnFavBtn>
       </FavWrapper>

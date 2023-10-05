@@ -10,7 +10,7 @@ const DotsBox = styled.div`
    width: 90px;
    height: 30px;
    border-radius: var(--rad-lg);
-   background-color: var(--white-color);
+   background-color: ${({theme}) => theme === 'light' ? 'var(--bg-light)' : 'var(--black-color-light)'};
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -20,7 +20,7 @@ const DotsBox = styled.div`
    transform: translateX(-50%);
 `;
 
-const Carousel = ({photos}) => {
+const Carousel = ({photos, theme}) => {
    const settings = {
       dots: true,
       speed: 500,
@@ -28,14 +28,18 @@ const Carousel = ({photos}) => {
       slidesToShow: 1,
       slidesToScroll: 1,
       fade: true,
-      appendDots: (dots) => (<DotsBox>{dots}</DotsBox>),
+      appendDots: (dots) => (<DotsBox theme={theme}>{dots}</DotsBox>),
    }
 
    return (
       <Slider {...settings}>
          {photos.map((item) => {
             return (
-               <Photo key={item.id} src={item.url} alt={item.id}/>
+               <Photo 
+                  key={item.id} 
+                  src={item.url} 
+                  alt={item.id}
+               />
             )
          })}
       </Slider>

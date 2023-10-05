@@ -139,14 +139,15 @@
 
     width: 10px;
     height: 10px;
-    /* margin: 0 5px; */
     padding: 0;
 
     cursor: pointer;
 
-    background-color: var(--pink-color-light);
+    background-color: var(--bg-color);
     border-radius: 100%;
 }
+
+
 .slick-dots li button
 {
     font-size: 0;

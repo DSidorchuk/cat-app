@@ -20,7 +20,7 @@ const Title = styled.h5`
    font-weight: var(--fw-light);
 
    & > span {
-      color: var(--black-color);
+      color: var(--text-color-dark);
       font-weight: var(--fw-bold);
    }
 `;
@@ -50,7 +50,7 @@ const Search = () => {
             <NavSpan>SEARCH</NavSpan>
          </FlexBox>
          <div>
-            <Title>Search results for: 
+            <Title>Search results for:  
                <span>{breedObj ? breedObj.name : breed}</span>
             </Title>
             <ImageGrid size={limit}>

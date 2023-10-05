@@ -15,7 +15,7 @@ const Grid = styled.div`
    width: 680px;
    display: grid;
    grid-template-rows: 80px minmax(690px, min-content);
-   background-color: var(--white-color);
+   background-color: var(--bg-light);
    border-radius: var(--rad-lg);
    justify-content: center;
 `;

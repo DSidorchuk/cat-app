@@ -1,7 +1,9 @@
 import { styled } from "styled-components";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { ReactComponent as Logo} from '../assets/Logo.svg';
+import { ReactComponent as LogoDark} from '../assets/Logo-dark.svg';
 import { Main } from "./Main";
 import { ThemeSwitcher } from "../features/theme/ThemeSwitcher";
 
@@ -25,12 +27,13 @@ const FlexBox = styled.div`
 `;
 
 const Layout = () => {
+   const theme = useSelector((state) => state.theme)
    return (
       <Container>
-         <Main/>
+         <Main theme={theme}/>
          <Grid>
             <FlexBox>
-               <Logo/>
+               {theme === 'light' ? <Logo/> : <LogoDark/>}
                <ThemeSwitcher/>
             </FlexBox>
             <Outlet/>

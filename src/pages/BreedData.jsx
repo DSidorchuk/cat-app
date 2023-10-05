@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { LinkBack } from "../components/LinkBack";
 import { useBreedDetails } from "../features/breed-details/use-breeds-details";
@@ -10,7 +11,7 @@ import { FlexBox } from "../components/FlexBox";
 
 
 const NavSpan = styled(Span)`
-   background-color: var(--pink-color-light);
+   background-color: var(--bg-color);
    color: var(--pink-color);
 `;
 
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
    width: 640px;
    min-height: 204px;
    border-radius: 20px;
-   border: 2px solid var(--pink-color-light);
+   border: 2px solid ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    position: relative;
 `;
 
@@ -39,12 +40,12 @@ const Title = styled.h2`
    display: flex;
    justify-content: center;
    align-items: center;
-   color: var(--black-color);
+   color: var(--text-color-dark);
    font-size: var(--fs-xl);
    font-weight: var(--fw-bold);
    width: 270px;
    height: 62px;
-   background-color: var(--white-color);
+   background-color: ${({theme}) => theme === 'light' ? 'var(--bg-light)' : 'var(--black-color-light)'};
    position: absolute;
    top: 0;
    left: 50%;
@@ -73,7 +74,7 @@ const DataBox = styled.div`
 
 const DataName = styled.h5`
    margin: 0;
-   color: var(--black-color);
+   color: var(--text-color-dark);
    font-size: var(--fs-md);
    font-weight: var(--fw-bold);
 `
@@ -86,6 +87,7 @@ const Data = styled.span`
 
 const BreedData = () => {
    const {breedId} = useParams();
+   const theme = useSelector((state) => state.theme);
    const [descr, photos, status, error] = useBreedDetails(breedId);
 
 
@@ -98,9 +100,9 @@ const BreedData = () => {
          </FlexBox>
          {status === 'loading' && <Spinner/>}
          {status === 'fulfilled' && !error && <Grid>
-            <Carousel photos={photos}/>
-            <Wrapper>
-               <Title>{descr.name}</Title>
+            <Carousel photos={photos} theme={theme}/>
+            <Wrapper theme={theme}>
+               <Title theme={theme}>{descr.name}</Title>
                <Subtitle>{descr.description}</Subtitle>
                <DataGrid>
                   <DataBox>

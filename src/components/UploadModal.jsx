@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import bg from '../assets/uploadBg.svg';
+import bgDark from '../assets/uploadBg-dark.svg';
 import {ReactComponent as Reject} from '../assets/reject.svg';
 import {ReactComponent as Confirmed} from '../assets/confirmed.svg'
 import {ReactComponent as Cross} from "../assets/close.svg";
@@ -18,7 +19,8 @@ const Wrapper = styled.div`
    top: 0;
    z-index: 5;
    display: ${({show}) => show ? 'grid' : 'none'};
-   grid-template-columns: repeat(2, 1fr);
+   grid-template-columns: 0.97fr 1fr;
+
 `;
 
 const Content = styled.div`
@@ -27,7 +29,8 @@ const Content = styled.div`
    width: 680px;
    height: 840px;
    border-radius: var(--rad-lg);
-   background-color: var(--grey-color-light);
+   background-color: ${({theme}) => theme === 'light' ? 'var(--bg-light)' : 'var(--black-color-light)'};
+   opacity: 1;
    grid-column: 2;
    position: relative;
 `;
@@ -35,7 +38,7 @@ const Content = styled.div`
 const Title = styled.h2`
    margin-top: 100px;
    text-align: center;
-   color: var(--black-color);
+   color: var(--text-color-dark);
    font-size: var(--fs-xl);
    font-weight: var(--fw-bold);
 `;
@@ -62,9 +65,9 @@ const InputWindow = styled.div`
    align-items: center;
    width: 640px;
    height: 320px;
-   border: 2px dashed var(--pink-color-light);
+   border: 2px dashed ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    border-radius: var(--rad-lg);
-   background: url(${bg}) center center no-repeat var(--white-color);
+   background: url(${({theme}) => theme === 'light' ? bg : bgDark}) center center no-repeat var(--bg-light);
    background-color: ${({condition}) => condition === 'rejected' ? 'var(--pink-color-light)' : null};
 
    & > img {
@@ -81,7 +84,7 @@ const Label = styled.label`
    font-weight: var(--fw-light);
 
    & > span {
-      color: var(--black-color);
+      color: var(--text-color-dark);
       font-size: var(--fs-lg);
       font-weight: var(--fw-bold);
       cursor: pointer;
@@ -118,7 +121,7 @@ const InfoTab = styled.div`
    width: 640px;
    height: 60px;
    border-radius: var(--rad-sm);
-   background: var(--white-color);
+   background: var(--bg-light);
    color: var(--grey-color);
    font-size: var(--fs-md);
    font-weight: var(--fw-light);
@@ -132,17 +135,23 @@ const InfoTab = styled.div`
 `;
 
 const Close = styled.button`
+   width: 40px;
+   height: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    position: absolute;
    right: 32px;
    top: 32px;
    border: none;
+   border-radius: var(--rad-sm);
    cursor: pointer;
    padding: 0;
-   background-color: var(--grey-color-light);
+   background-color: var(--bg-light);
 `;
 
 
-const UploadModal = ({show, handleClose}) => {
+const UploadModal = ({show, handleClose, theme}) => {
    const dispatch = useDispatch();
    const {status} = useSelector(selectUpload);
    const [img, setImg] = useState();
@@ -190,7 +199,7 @@ const UploadModal = ({show, handleClose}) => {
 
    return (
       <Wrapper show={show}>
-         <Content>
+         <Content theme={theme}>
             <Close onClick={handleClose}>
                <Cross/>
             </Close>
@@ -204,6 +213,7 @@ const UploadModal = ({show, handleClose}) => {
                onDragOver={handleDragOver}
                onDragStart={handleDragStart}
                condition={status}
+               theme={theme}
             >
                {(img && status!=='fulfilled') && 
                   <img src={img.preview} alt={img.name}/>
@@ -227,7 +237,7 @@ const UploadModal = ({show, handleClose}) => {
             </InputWindow>
             <FileName>
                {img && status!=='fulfilled' && `Image File Name: ${img.name}`}
-               {!img || status==='fulfilled' && 'No file selected'}
+               {(!img || status==='fulfilled') && 'No file selected'}
             </FileName>
             {img && status==='idle' &&
                <UploadBtn 

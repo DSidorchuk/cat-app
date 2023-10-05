@@ -24,6 +24,7 @@ const Grid = styled.div`
 
 const Favourites = () => {
    const dispatch = useDispatch();
+   const theme = useSelector((state) => state.theme);
    const {favourite, status, error, history} = useSelector(selectFavourite);
    const unFavHistory = history.filter((item) => item.type === 'remove-fav');
 
@@ -56,6 +57,7 @@ const Favourites = () => {
                            grid={i}
                            unFav={() => handleClick(item.id, item.image_id)}
                            favourite={true}
+                           theme={theme}
                         />
                      )
                   })}

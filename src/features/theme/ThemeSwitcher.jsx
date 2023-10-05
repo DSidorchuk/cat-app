@@ -7,7 +7,6 @@ import { ReactComponent as LightSwitch} from '../../assets/light-theme.svg';
 import { ReactComponent as DarkSwitch} from '../../assets/dark-theme.svg';
 
 
-
 const Wrapper = styled.div`
    width: 77px;
    height: 24px;
@@ -19,7 +18,7 @@ const Wrapper = styled.div`
 const Eye = styled.div`
    width: 24px;
    height: 24px;
-   background-color: var(--white-color);
+   background-color: var(--bg-light);
    border-radius: var(--rad-xl);
    display: flex;
    justify-content: center;

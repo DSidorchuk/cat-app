@@ -24,7 +24,7 @@ const Input = styled.input`
    padding-left: 20px;
    width: 470px;
    height: 60px;
-   background-color: var(--white-color);
+   background-color: var(--bg-light);
    border: none;
    border-radius: var(--rad-lg);
    font-size: var(--fs-lg);
@@ -34,7 +34,7 @@ const Input = styled.input`
 
    &:focus {
       border: 2px solid var(--pink-color);
-      color: var(--black-color);
+      color: var(--text-color-dark);
    }
    &:hover {
       border: 2px solid var(--pink-color-light);
@@ -48,10 +48,10 @@ const Submit = styled.button`
    justify-content: center;
    position: absolute;
    top: 10px;
-   right: 7px;
+   right: 10px;
    width: 40px;
    height: 40px;
-   background-color: var(--pink-color-light);
+   background-color: var(--bg-color);
    border-radius: var(--rad-sm);
    border: none;
    cursor: pointer;
@@ -68,7 +68,7 @@ const Icon = styled(NavLink)`
    padding: 0;
    width: 60px;
    height: 60px;
-   background-color: var(--white-color);
+   background-color: var(--bg-light);
    border-radius: var(--rad-lg);
    border: none;
    cursor: pointer;

@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 `;
 
 const MainTitle = styled.h1`
-   color: var(--black-color);
+   color: var(--text-color-dark);
    font-size: var(--fs-xxl);
    font-weight: var(--fw-bold);
    line-height: 0;
@@ -24,18 +24,18 @@ const Subtitle = styled.h2`
 
 const Title = styled.h3`
    margin-top: 60px;
-   color: var(--black-color);
+   color: var(--text-color-dark);
    font-size: var(--fs-lg);
    font-weight: var(--fw-bold);
 `;
 
-const Main = () => {
+const Main = ({theme}) => {
    return (
       <Wrapper>
          <MainTitle>Hi!👋</MainTitle>
          <Subtitle>Welcome to MacPaw Bootcamp 2023</Subtitle>
          <Title>Lets start using The Cat API</Title>
-         <Navigation/>
+         <Navigation theme={theme}/>
       </Wrapper>
    )
 }
