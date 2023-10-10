@@ -6,6 +6,11 @@ const Wrapper = styled.div`
    height: 450px;
    position: fixed;
    top: 134px;
+
+   @media(max-width: 991px) {
+      position: static;
+      margin-top: 80px;
+   }
 `;
 
 const MainTitle = styled.h1`

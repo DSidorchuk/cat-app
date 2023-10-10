@@ -1,7 +1,9 @@
 import { styled } from "styled-components";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useState } from "react";
+import MediaQuery from "react-responsive";
 
+import { Burger } from "./Burger";
 import {ReactComponent as IconSearch} from "../assets/search-20.svg";
 import {ReactComponent as IconPositive} from "../assets/positive.svg";
 import {ReactComponent as IconHeart}from "../assets/heart.svg";
@@ -13,6 +15,10 @@ const FlexBox = styled.div`
    justify-content: space-between;
    align-items: center;
    width: 680px;
+
+   @media(max-width: 991px) {
+      width: 708px;
+   }
 `;
 
 const Form = styled.form`
@@ -38,6 +44,10 @@ const Input = styled.input`
    }
    &:hover {
       border: 2px solid var(--pink-color-light);
+   }
+
+   @media(max-width: 991px) {
+      width: 428px;
    }
 `;
 
@@ -87,7 +97,8 @@ const Icon = styled(NavLink)`
    }
 `;
 
-const Toolbar = () => {
+
+const Toolbar = ({openMenu}) => {
    const navigate = useNavigate();
    const [searchValue, setSearchValue] = useState('');
 
@@ -102,6 +113,9 @@ const Toolbar = () => {
 
    return (
       <FlexBox>
+         <MediaQuery maxWidth={991}>
+            <Burger handleClick={openMenu}/>
+         </MediaQuery>
          <Form onSubmit={handleSubmit}>
             <Input 
                id="name" 

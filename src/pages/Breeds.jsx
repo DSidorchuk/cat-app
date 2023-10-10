@@ -17,6 +17,10 @@ const FlexBox = styled.div`
    justify-content: space-between;
    align-items: center;
    width: 640px;
+   
+   @media(max-width: 991px) {
+      width: 668px;
+   }
 `;
 
 const BreedSelect = styled.select.attrs({size: 1})`

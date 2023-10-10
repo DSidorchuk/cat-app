@@ -6,4 +6,8 @@ export const FlexBox = styled.div`
    align-items: center;
    gap: 10px;
    width: 640px;
+   
+   @media(max-width: 991px) {
+      width: 668px;
+   }
 `;

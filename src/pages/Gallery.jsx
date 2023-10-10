@@ -28,6 +28,10 @@ const FlexBox = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
+
+   @media(max-width: 991px) {
+      width: 668px;
+   }
 `;
 
 const UploadBtn = styled.button`
@@ -70,6 +74,10 @@ const Grid = styled.div`
    display: grid;
    grid-template-rows: 156px min-content;
    row-gap: 20px;
+
+   @media(max-width: 991px) {
+      width: 668px;
+   }
 `;
 
 const FilterGrid = styled.div`
@@ -81,7 +89,12 @@ const FilterGrid = styled.div`
    grid-template-rows: repeat(2, 1fr);
    grid-gap: 10px 20px;
    border-radius: var(--rad-lg);
-   background-color: var(--bg-light);
+   background-color: var(--bg-dark);
+
+   @media(max-width: 991px) {
+      width: 668px;
+      // padding: 0;
+   }
 `;
 
 const InputWrap = styled.div`
@@ -106,7 +119,7 @@ const Select = styled.select.attrs({size: 1})`
    height: 40px;
    border: none;
    border-radius: var(--rad-sm);
-   background-color: var(--bg-dark);
+   background-color: var(--bg-light);
    color: var(--text-color-dark);
    font-size: var(--fs-md);
    font-weight: var(--fw-light);

@@ -33,6 +33,10 @@ const Wrapper = styled.div`
    border-radius: 20px;
    border: 2px solid ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    position: relative;
+
+   @media(max-width: 991px) {
+      width: 668px;
+   }
 `;
 
 const Title = styled.h2`
@@ -62,7 +66,7 @@ const Subtitle = styled.span`
 const DataGrid = styled.div`
    margin-top: 20px;
    display: grid;
-   grid-template-columns: repeat(2, 270px);
+   grid-template-columns: repeat(2, 282px);
    column-gap: 20px;
 `;
 

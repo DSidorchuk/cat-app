@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import MediaQuery from "react-responsive";
 
 import { Home } from './pages/Home';
 import { Breeds } from './pages/Breeds';

@@ -11,6 +11,10 @@ const Grid = styled.div`
    row-gap: 10px;
    width: 640px;
    position: relative;
+
+   @media(max-width: 991px) {
+      width: 668px;
+   }
 `;
 
 const RecordWrapper = styled.div`
@@ -22,7 +26,11 @@ const RecordWrapper = styled.div`
    align-items: center;
    display: grid;
    grid-template-columns: 60px 525px;
-   column-gap: 20px
+   column-gap: 20px;
+
+   @media(max-width: 991px) {
+      width: 668px;
+   }
 `;
 
 const RecordBox = styled.div`
@@ -31,6 +39,10 @@ const RecordBox = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
+
+   @media(max-width: 991px) {
+      width: 553px;
+   }
 `;
 
 const Time = styled.div`

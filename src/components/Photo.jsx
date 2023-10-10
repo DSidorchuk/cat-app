@@ -6,4 +6,8 @@ export const Photo = styled.img`
    object-fit: cover;
    display: block;
    border-radius: var(--rad-lg);
+
+   @media(max-width: 991px) {
+      width: 668px;
+   }
 `;

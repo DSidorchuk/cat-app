@@ -11,8 +11,8 @@ import { Spinner } from '../components/Spinner';
 import { uploadPhoto, selectUpload, clearUpload } from "../features/upload/upload-slice";
 
 const Wrapper = styled.div`
-   width: 100vmax;
-   height: 100vmax;
+   width: 100vw;
+   height: 100vh;
    background-color: rgba(29, 29, 29, 0.60);
    position: fixed;
    left: 0;
@@ -21,6 +21,11 @@ const Wrapper = styled.div`
    display: ${({show}) => show ? 'grid' : 'none'};
    grid-template-columns: 0.97fr 1fr;
 
+   @media(max-width: 991px) {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      align-items: center;
+   }
 `;
 
 const Content = styled.div`
@@ -33,6 +38,10 @@ const Content = styled.div`
    opacity: 1;
    grid-column: 2;
    position: relative;
+
+   @media(max-width: 991px) {
+      grid-column: 1;
+   }
 `;
 
 const Title = styled.h2`

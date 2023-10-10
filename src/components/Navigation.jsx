@@ -7,6 +7,7 @@ import gallery from '../assets/images-search.png';
 
 const FlexBox = styled.div`
    margin-top: 20px;
+   width: 446px;
    display: flex;
    justify-content: space-between;
 `;
@@ -70,7 +71,7 @@ const Navigation = ({theme}) => {
             <ImgBox color='var(--green-color)'>
                <img src={breeds} alt="breeds"/>
             </ImgBox>
-            <Link to='content/breeds' theme={theme}>
+            <Link to='/content/breeds' theme={theme}>
                BREEDS
             </Link>
          </Wrapper>
@@ -78,7 +79,7 @@ const Navigation = ({theme}) => {
             <ImgBox color='var(--orange-color)'>
                <img src={gallery} alt="gallery"/>
             </ImgBox>
-            <Link to='content/gallery' theme={theme}>
+            <Link to='/content/gallery' theme={theme}>
                GALLERY
             </Link>
          </Wrapper>
