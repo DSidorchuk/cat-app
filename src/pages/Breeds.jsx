@@ -21,15 +21,23 @@ const FlexBox = styled.div`
    @media(max-width: 991px) {
       width: 668px;
    }
+   @media(max-width: 576px) {
+      display: grid;
+      grid-template-columns: repeat(6, 40px);
+      grid-template-rows: repeat(3, 40px);
+      gap: 10px;
+      width: 335px;
+      padding: 20px 20px 0 20px;
+   }
 `;
 
 const BreedSelect = styled.select.attrs({size: 1})`
-   padding-left: 10px;
    width: 226px;
    height: 40px;
+   padding-left: 10px;
    border-radius: var(--rad-sm);
    border: none;
-   background-color: var(--bg-light);
+   background-color: var(--bg-dark);
    color: var(--grey-color);
    outline: none;
 
@@ -44,27 +52,45 @@ const BreedSelect = styled.select.attrs({size: 1})`
    &:hover {
       border: 2px solid ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    }
+
+   @media(max-width: 576px) {
+      grid-row: 2 /3;
+      grid-column: 1 / 7;
+      width: 295px;
+   }
 `;
 
 const LimitSelect = styled(BreedSelect)`
    width: 101px;
+
+   @media(max-width: 576px) {
+      grid-row: 3 /4;
+      grid-column: 1 / 5;
+      width: 195px;
+   }
 `;
 
 const Order = styled.span`
-   cursor: pointer;
-   width: 40px;
-   height: 40px;
-   border-radius: var(--rad-sm);
-   background-color: var(--bg-light);
    display: flex;
    justify-content: center;
    align-items: center;
+   width: 40px;
+   height: 40px;
+   border-radius: var(--rad-sm);
+   background-color: var(--bg-dark);
+   cursor: pointer;
 
    &:hover {
       border: 2px solid var(--pink-color-light);
+      
       & > svg {
          fill: var(--pink-color);
       }
+   }
+
+   @media(max-width: 576px) {
+      grid-row: 3 /4;
+      grid-column: 5 ;
    }
 `;
 
@@ -114,7 +140,8 @@ const Breeds = () => {
             <Order value="ASC" onClick={() => selectOrder("ASC")}>
                <IconUp/>
             </Order>
-            <Order value="DESC" onClick={() => selectOrder("DESC")}>
+            <Order value="DESC" onClick={() => selectOrder("DESC")}
+            style={{gridColumn: 6}}>
                <IconDown/>
             </Order>
          </FlexBox>

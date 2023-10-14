@@ -11,15 +11,15 @@ import { Spinner } from '../components/Spinner';
 import { uploadPhoto, selectUpload, clearUpload } from "../features/upload/upload-slice";
 
 const Wrapper = styled.div`
-   width: 100vw;
-   height: 100vh;
-   background-color: rgba(29, 29, 29, 0.60);
    position: fixed;
    left: 0;
    top: 0;
    z-index: 5;
    display: ${({show}) => show ? 'grid' : 'none'};
    grid-template-columns: 0.97fr 1fr;
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(29, 29, 29, 0.60);
 
    @media(max-width: 991px) {
       grid-template-columns: 1fr;
@@ -29,51 +29,61 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
-   margin-top: 30px;
-   padding: 0 20px;
+   position: relative;
+   grid-column: 2;
    width: 680px;
    height: 840px;
+   margin-top: 30px;
+   padding: 0 20px;
    border-radius: var(--rad-lg);
    background-color: ${({theme}) => theme === 'light' ? 'var(--bg-light)' : 'var(--black-color-light)'};
    opacity: 1;
-   grid-column: 2;
-   position: relative;
 
    @media(max-width: 991px) {
       grid-column: 1;
+   }
+   @media(max-width: 576px) {
+      width: 375px;
+      margin-top: 0;
+      border-radius: unset;
+      background-color: var(--bg-dark);
    }
 `;
 
 const Title = styled.h2`
    margin-top: 100px;
    text-align: center;
-   color: var(--text-color-dark);
    font-size: var(--fs-xl);
    font-weight: var(--fw-bold);
+   color: var(--text-color-dark);
+
+   @media(max-width: 576px) {
+      font-size: var(--fs-lg);
+   }
 `;
 
 const SubTitle = styled.h3`
    margin-top: 10px;
    text-align: center;
-   color: var(--grey-color);
    font-size: var(--fs-lg);
    font-weight: var(--fw-light);
+   color: var(--grey-color);
 
    & > a {
-      color: var(--pink-color);
       font-size: var(--fs-lg);
       font-weight: var(--fw-light);
       text-decoration: none;
+      color: var(--pink-color);
    }
 `;
 
 const InputWindow = styled.div`
-   margin: 0 auto;
    display: flex;
    justify-content: center;
    align-items: center;
    width: 640px;
    height: 320px;
+   margin: 0 auto;
    border: 2px dashed ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    border-radius: var(--rad-lg);
    background: url(${({theme}) => theme === 'light' ? bg : bgDark}) center center no-repeat var(--bg-light);
@@ -84,74 +94,95 @@ const InputWindow = styled.div`
       height: 280px;
       object-fit: contain;
    }
+
+   @media(max-width: 576px) {
+      width: 335px;
+      height: 168px;
+      background: url(${({theme}) => theme === 'light' ? bg : bgDark}) center center / 80px 80px no-repeat var(--bg-light);
+
+      & > img {
+         width: 295px;
+         height: 148px;
+         object-fit: contain;
+      }
+   }
 `;
 
 const Label = styled.label`
    display: block;
-   color: var(--grey-color);
    font-size: var(--fs-lg);
    font-weight: var(--fw-light);
+   color: var(--grey-color);
 
    & > span {
-      color: var(--text-color-dark);
       font-size: var(--fs-lg);
       font-weight: var(--fw-bold);
       cursor: pointer;
+      color: var(--text-color-dark);
+   }
+
+   @media(max-width: 576px) {
+      width: 200px;
+      height: 60px;
    }
 `;
 
 const FileName = styled.div`
    margin-top: 20px;
    text-align: center;
-   color: var(--grey-color);
    font-size: var(--fs-lg);
    font-weight: var(--fw-light);
+   color: var(--grey-color);
 `;
 
 const UploadBtn = styled.button`
    display: block;
-   margin: 0 auto;
-   margin-top: 20px;
    width: 172px;
    height: 40px;
-   background-color: var(--pink-color);
-   border: none;
-   border-radius: var(--rad-sm);
-   color: var(--white-color);
+   margin: 0 auto;
+   margin-top: 20px;
    text-align: center;
    font-size: var(--fs-sm);
    font-weight: var(--fw-bold);
    letter-spacing: 2px;
    cursor: pointer;
+   background-color: var(--pink-color);
+   border: none;
+   border-radius: var(--rad-sm);
+   color: var(--white-color);
 `;
 
 const InfoTab = styled.div`
-   margin-top: 20px;
-   width: 640px;
-   height: 60px;
-   border-radius: var(--rad-sm);
-   background: var(--bg-light);
-   color: var(--grey-color);
-   font-size: var(--fs-md);
-   font-weight: var(--fw-light);
    display: flex;
    justify-content: flex-start;
    align-items: center;
+   width: 640px;
+   height: 60px;
+   margin-top: 20px;
+   font-size: var(--fs-md);
+   font-weight: var(--fw-light);
+   border-radius: var(--rad-sm);
+   background: var(--bg-light);
+   color: var(--grey-color);
 
    & > svg {
       margin: 0 10px 0 20px;
    }
+   @media(max-width: 576px) {
+      width: 335px;
+      height: 60px;
+   }
 `;
 
 const Close = styled.button`
-   width: 40px;
-   height: 40px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
    position: absolute;
    right: 32px;
    top: 32px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 40px;
+   height: 40px;
    border: none;
    border-radius: var(--rad-sm);
    cursor: pointer;

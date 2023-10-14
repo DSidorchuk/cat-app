@@ -16,10 +16,16 @@ const Span = styled(NavSpan)`
 `
 
 const Grid = styled.div`
-   width: 640px;
    display: grid;
    grid-template-rows: minmax(300px, min-content) min-content;
    row-gap: 40px;
+   width: 640px;
+
+   @media(max-width: 576px) {
+      justify-content: center;
+      width: 335px;
+      padding-bottom: 20px;
+   }
 `;
 
 const Favourites = () => {
@@ -63,7 +69,10 @@ const Favourites = () => {
                   })}
                </ImageGrid>
             }
-            <VoteHistory history={unFavHistory}/>
+            <VoteHistory 
+               history={unFavHistory}
+               theme={theme}
+            />
          </Grid>
       </>
    )

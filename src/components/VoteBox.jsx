@@ -6,6 +6,11 @@ import {ReactComponent as IconNegative}  from "../assets/negative.svg";
 import {ReactComponent as IconWhiteheart} from "../assets/white-heart.svg";
 
 const Wrapper = styled.div`
+   position: absolute;
+   top: 320px;
+   left: 50%;
+   transform: translateX(-50%);
+   overflow: hidden;
    display: flex;
    justify-content: space-between;
    width: 248px;
@@ -13,11 +18,12 @@ const Wrapper = styled.div`
    background-color: var(--white-color);
    border-radius: var(--rad-lg);
    border: 4px solid ${({theme}) => theme === 'light' ? 'var(--bg-light)' : 'var(--black-color-light)'};
-   overflow: hidden;
-   position: absolute;
-   top: 320px;
-   left: 50%;
-   transform: translateX(-50%);
+
+   @media(max-width: 576px) {
+      width: 194px;
+      height: 60px;
+      top: 137px;
+   }
 `;
 
 const BtnWrapper = styled.div`
@@ -25,12 +31,11 @@ const BtnWrapper = styled.div`
    cursor: pointer;
 
    & > svg {
-      fill: var(--white-color);
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      
+      fill: var(--white-color);      
    }
 
    &:hover {
@@ -44,14 +49,18 @@ const BtnWrapper = styled.div`
 `;
 
 const Button = styled.button`
-   padding: 0;
-   width: 77px;
-   height: 100%;
+   position: relative;
    display: flex;
    justify-content: center;
    align-items: center;
+   width: 77px;
+   height: 100%;
+   padding: 0;
    border: none;
-   position: relative;
+
+   @media(max-width: 576px) {
+      width: 61px;
+   }
 `;
 
 const UpBtn = styled(Button)`
@@ -61,6 +70,10 @@ const UpBtn = styled(Button)`
 const FavBtn = styled(Button)`
    width: 78px;
    background-color: var(--pink-color);
+
+   @media(max-width: 576px) {
+      width: 64px;
+   }
 `;
 
 const DownBtn = styled(Button)`

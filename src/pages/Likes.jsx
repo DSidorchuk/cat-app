@@ -16,18 +16,18 @@ const Span = styled(NavSpan)`
 `;
 
 const Title = styled.h5`
-   margin: 0;
-   padding: 0 20px;
+   display: flex;
+   align-items: center;
    width: 640px;
    height: 60px;
-   border-radius: var(--rad-sm);
-   background: var(--grey-color-light);
-   color: var(--grey-color);
+   margin: 0;
+   padding: 0 20px;
    font-size: var(--fs-md);
    font-weight: var(--fw-light);
    line-height: 24px;
-   display: flex;
-   align-items: center;
+   border-radius: var(--rad-sm);
+   background: var(--grey-color-light);
+   color: var(--grey-color);
 `;
 
 const Likes = ({rate}) => {

@@ -1,15 +1,15 @@
 import { styled } from "styled-components";
 
 const Wrapper = styled.div`
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
    width: 60px;
    height: 60px;
    padding: 20px 0;
    border-radius: var(--rad-lg);
    background-color: var(--bg-light);
-   display: flex;
-   flex-direction: column;
-   justify-content: space-around;
-   align-items: center;
 `;
 
 const Line = styled.div`

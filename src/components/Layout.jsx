@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 import { Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
 import MediaQuery from "react-responsive";
 
 import { ReactComponent as Logo} from '../assets/Logo.svg';
 import { ReactComponent as LogoDark} from '../assets/Logo-dark.svg';
 import { Main } from "./Main";
 import { ThemeSwitcher } from "../features/theme/ThemeSwitcher";
+import { useTheme } from "../features/theme/use-theme";
 
 
 const Container = styled.div`
@@ -19,24 +19,26 @@ const Container = styled.div`
    }
    @media(max-width: 576px) {
       width: 375px;
+      margin-top: 20px;
    }
 `;
 
 const Grid = styled.div`
-   margin-top: 30px;
    display: grid;
    grid-template-columns: 665px 775px;
    justify-items: center;
+   margin-top: 30px;
 `;
 
 const FlexBox = styled.div`
-   width: 665px;
    display: flex;
    justify-content: space-between;
+   width: 665px;
 `;
 
 const Layout = () => {
-   const theme = useSelector((state) => state.theme)
+   const [theme] = useTheme();
+
    return (
       <>
          <MediaQuery minWidth={992}>

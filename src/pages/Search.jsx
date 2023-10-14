@@ -15,13 +15,16 @@ const Title = styled.h5`
    padding: 0;
    margin: 0;
    margin-bottom: 20px;
-   color: var(--grey-color);
    font-size: var(--fs-lg);
    font-weight: var(--fw-light);
+   color: var(--grey-color);
 
    & > span {
-      color: var(--text-color-dark);
       font-weight: var(--fw-bold);
+      color: var(--text-color-dark);
+   }
+   @media(max-width: 576px) {
+      padding-left: 20px;
    }
 `;
 

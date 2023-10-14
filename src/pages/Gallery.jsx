@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import MediaQuery from "react-responsive";
+
 import { LinkBack } from "../components/LinkBack";
 import { NavSpan } from "../components/NavSpan";
 import {ReactComponent as Upload} from "../assets/upload.svg";
@@ -18,48 +20,57 @@ const Span = styled(NavSpan)`
 `;
 
 const NavWrap = styled.div`
-   width: 206px;
    display: flex;
    justify-content: space-between;
+   width: 206px;
 `;
 
 const FlexBox = styled.div`
-   width: 640px;
    display: flex;
    justify-content: space-between;
    align-items: center;
+   width: 640px;
 
    @media(max-width: 991px) {
       width: 668px;
    }
+
+   @media(max-width: 576px) {
+      display: grid;
+      grid-auto-row: 40px;
+      row-gap: 10px;
+      width: 335px;
+      padding: 20px 20px 0 20px;
+   }
 `;
 
 const UploadBtn = styled.button`
-   margin: 0;
-   padding: 0 30px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
    width: 143px;
    height: 40px;
+   margin: 0;
+   padding: 0 30px;
    border: none;
    border-radius: var(--rad-sm);
    background-color: var(--bg-color);
    cursor: pointer;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
 
    & > span {
       display: block;
       width: 57px;
-      color: var(--pink-color);
       text-align: center;
       font-size: var(--fs-sm);
       font-weight: var(--fw-bold);
       letter-spacing: 2px;
       text-transform: uppercase;
+      color: var(--pink-color);
    }
 
    &:hover {
       background-color: var(--pink-color);
+
       & > span {
          color: var(--white-color);
       }
@@ -67,33 +78,50 @@ const UploadBtn = styled.button`
          fill: var(--white-color);
       }
    }
+
+   @media(max-width: 576px) {
+      justify-content: center;
+      gap: 10px;
+      width: 295px;
+   }
 `;
 
 const Grid = styled.div`
-   width: 640px;
    display: grid;
    grid-template-rows: 156px min-content;
    row-gap: 20px;
+   width: 640px;
 
    @media(max-width: 991px) {
       width: 668px;
    }
+   @media(max-width: 576px) {
+      grid-template-rows: 335px min-content;
+      width: 335px;
+      padding: 0 20px;
+      margin-top: 10px;
+   }
 `;
 
 const FilterGrid = styled.div`
-   padding: 10px 20px 20px 20px;
-   width: 640px;
-   height: 156px;
    display: grid;
    grid-template-columns: repeat(2, 1fr);
    grid-template-rows: repeat(2, 1fr);
    grid-gap: 10px 20px;
+   width: 640px;
+   height: 156px;
+   padding: 10px 20px 20px 20px;
    border-radius: var(--rad-lg);
    background-color: var(--bg-dark);
 
    @media(max-width: 991px) {
       width: 668px;
-      // padding: 0;
+   }
+   @media(max-width: 576px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 60px) 40px;
+      width: 295px;
+      height: 350px;
    }
 `;
 
@@ -105,24 +133,24 @@ const InputWrap = styled.div`
 
 const Label = styled.label`
    padding-left: 14px;
-   color: var(--grey-color);
    font-size: var(--fs-xs);
    font-weight: var(--fw-bold);
    line-height: 18px;
    text-transform: uppercase;
+   color: var(--grey-color);
 `;
 
 const Select = styled.select.attrs({size: 1})`
-   padding: 0;
-   padding-left: 10px;
    width: 290px;
    height: 40px;
+   padding: 0;
+   padding-left: 10px;
+   font-size: var(--fs-md);
+   font-weight: var(--fw-light);
    border: none;
    border-radius: var(--rad-sm);
    background-color: var(--bg-light);
    color: var(--text-color-dark);
-   font-size: var(--fs-md);
-   font-weight: var(--fw-light);
    cursor: pointer;
 
    & > option {
@@ -134,12 +162,16 @@ const Select = styled.select.attrs({size: 1})`
    &:hover {
       border: 2px solid ${({theme}) => theme === 'light' ? 'var(--pink-color-light)' : 'var(--pink-color)'};
    }
+
+   @media(max-width: 576px) {
+      width: 255px;
+   }
 `;
 
 const LimitWrap = styled.div`
-   width: 100%;
    display: flex;
    justify-content: space-between;
+   width: 100%;
 `;
 
 const LimitSelect = styled(Select)`
@@ -147,14 +179,14 @@ const LimitSelect = styled(Select)`
 `;
 
 const UpdateBtn = styled.button`
+   display: flex;
+   justify-content: center;
+   align-items: center;
    width: 40px;
    height: 40px;
    border: none;
    border-radius: var(--rad-sm);
    background-color: var(--bg-dark);
-   display: flex;
-   justify-content: center;
-   align-items: center;
    cursor: pointer;
 
    &:hover {
@@ -162,6 +194,11 @@ const UpdateBtn = styled.button`
       & > svg {
          fill: var(--white-color);
       }
+   }
+   
+   @media(max-width: 576px) {
+      width: 255px;
+      background-color: var(--bg-light);
    }
 `;
 
@@ -268,20 +305,42 @@ const Gallery = () => {
                      })}
                   </Select>
                </InputWrap>
-               <InputWrap>
-                  <Label>limit</Label>
-                  <LimitWrap>
-                     <LimitSelect defaultValue={limit} onChange={selectLimit}>
-                        <option value="5">5 items per page</option>
-                        <option value="10">10 items per page</option>
-                        <option value="15">15 items per page</option>
-                        <option value="20">20 items per page</option>
-                     </LimitSelect>
+               <MediaQuery minWidth={577}>
+                  <InputWrap>
+                     <Label>limit</Label>
+                     <LimitWrap>
+                        <LimitSelect defaultValue={limit} onChange={selectLimit}>
+                           <option value="5">5 items per page</option>
+                           <option value="10">10 items per page</option>
+                           <option value="15">15 items per page</option>
+                           <option value="20">20 items per page</option>
+                        </LimitSelect>
+                        <UpdateBtn onClick={loadImages}>
+                           <Update/>
+                        </UpdateBtn>
+                     </LimitWrap>
+                  </InputWrap>
+               </MediaQuery>
+               <MediaQuery maxWidth={576}>
+                  <>
+                     <InputWrap>
+                        <Label>limit</Label>
+                        <Select 
+                           defaultValue={limit} 
+                           onChange={selectLimit}
+                        >
+                           <option value="5">5 items per page</option>
+                           <option value="10">10 items per page</option>
+                           <option value="15">15 items per page</option>
+                           <option value="20">20 items per page</option>
+                        </Select>
+                     </InputWrap>
                      <UpdateBtn onClick={loadImages}>
-                        <Update/>
+                           <Update/>
                      </UpdateBtn>
-                  </LimitWrap>
-               </InputWrap>
+                  </>
+               </MediaQuery>
+
             </FilterGrid>
             {status === 'fulfilled' && !error && <ImageGrid size={limit}>
                   {images.map((item, i) => {

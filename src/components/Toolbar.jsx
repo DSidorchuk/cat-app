@@ -19,22 +19,36 @@ const FlexBox = styled.div`
    @media(max-width: 991px) {
       width: 708px;
    }
+
+   @media(max-width: 576px) {
+      display: grid;
+      grid-template-columns: repeat(5, 59px);
+      grid-template-rows: repeat(2, 60px);
+      gap: 10px;
+      width: 335px;
+      height: 130px;
+   }
 `;
 
 const Form = styled.form`
    position: relative;
+
+   @media(max-width: 576px) {
+      grid-row: 2;
+      grid-column: 1 / 6;
+   }
 `;
 
 const Input = styled.input`
-   padding: 0;
-   padding-left: 20px;
    width: 470px;
    height: 60px;
+   padding: 0;
+   padding-left: 20px;
+   font-size: var(--fs-lg);
+   font-weight: var(--fw-ligh);
    background-color: var(--bg-light);
    border: none;
    border-radius: var(--rad-lg);
-   font-size: var(--fs-lg);
-   font-weight: var(--fw-ligh);
    color: var(--grey-color);
    outline: none;
 
@@ -49,18 +63,22 @@ const Input = styled.input`
    @media(max-width: 991px) {
       width: 428px;
    }
+
+   @media(max-width: 576px) {
+      width: 335px;
+   }
 `;
 
 const Submit = styled.button`
-   padding: 0;
-   display: flex;
-   align-items: center;
-   justify-content: center;
    position: absolute;
    top: 10px;
    right: 10px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    width: 40px;
    height: 40px;
+   padding: 0;
    background-color: var(--bg-color);
    border-radius: var(--rad-sm);
    border: none;
@@ -68,6 +86,7 @@ const Submit = styled.button`
 
    &:hover {
       background-color: var(--pink-color);
+
       & > svg {
          fill: var(--white-color);
       }
@@ -75,26 +94,28 @@ const Submit = styled.button`
 `;
 
 const Icon = styled(NavLink)`
-   padding: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    width: 60px;
    height: 60px;
+   padding: 0;
    background-color: var(--bg-light);
    border-radius: var(--rad-lg);
    border: none;
    cursor: pointer;
-   display: flex;
-   justify-content: center;
-   align-items: center;
 
    &:hover {
       background-color: var(--pink-color-light);
    }
    &.active {
       background-color: var(--pink-color);
+
       & > svg {
          fill: var(--white-color);
       }
    }
+
 `;
 
 
@@ -130,6 +151,9 @@ const Toolbar = ({openMenu}) => {
                <IconSearch/>
             </Submit>
          </Form>
+            <MediaQuery maxWidth={576}>
+               <div/>
+            </MediaQuery>
             <Icon to={'/content/likes'}>
                <IconPositive/>
             </Icon>

@@ -9,6 +9,13 @@ const Grid = styled.div`
    gap: 20px 20px;
    justify-content: center;
    grid-template-areas: ${(props) => props.size};
+
+   @media(max-width: 576px) {
+      grid-template-areas: unset;
+      grid-template-columns: 295px;
+      grid-auto-rows: 207px;
+      margin-top: 10px;
+   }
 `;
 
 

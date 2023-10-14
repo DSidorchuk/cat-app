@@ -15,10 +15,17 @@ import { FlexBox } from "../components/FlexBox";
 
 
 const Grid = styled.div`
+   position: relative;
    display: grid;
    grid-template-rows: 360px min-content;
    row-gap: 52px;
-   position: relative;
+
+   @media(max-width: 576px) {
+      grid-template-rows: 167px min-content;
+      row-gap: 43px;
+      width: 335px;
+      padding: 0 20px;
+   }
 `;
 
 const Voting = () => {

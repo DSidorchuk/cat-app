@@ -2,36 +2,39 @@ import { styled } from "styled-components";
 import { Navigation } from "./Navigation";
 
 const Wrapper = styled.div`
-   width: 446px;
-   height: 450px;
    position: fixed;
    top: 134px;
+   width: 446px;
+   height: 450px;
 
    @media(max-width: 991px) {
       position: static;
       margin-top: 80px;
    }
+   @media(max-width: 576px) {
+      width: 335px;
+   }
 `;
 
 const MainTitle = styled.h1`
-   color: var(--text-color-dark);
    font-size: var(--fs-xxl);
    font-weight: var(--fw-bold);
    line-height: 0;
+   color: var(--text-color-dark);
 `
 
 const Subtitle = styled.h2`
    margin-top: 10px;
-   color: var(--grey-color);
    font-size: var(--fs-lg);
    font-weight: var(--fw-light);
+   color: var(--grey-color);
 `;
 
 const Title = styled.h3`
    margin-top: 60px;
-   color: var(--text-color-dark);
    font-size: var(--fs-lg);
    font-weight: var(--fw-bold);
+   color: var(--text-color-dark);
 `;
 
 const Main = ({theme}) => {

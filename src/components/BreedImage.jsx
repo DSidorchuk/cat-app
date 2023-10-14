@@ -6,20 +6,20 @@ import {ReactComponent as EmptyHeart} from "../assets/empty-heart.svg";
 import {ReactComponent as FullHeart} from "../assets/full-heart.svg";
 
 const Wrapper = styled.div`
-   grid-area: ${(props) => 'p'+ props.grid};
    position: relative;
-
+   grid-area: ${(props) => 'p'+ props.grid};
+   
    &:before {
       content: '';
-      width: 100%;
-      height: 100%;
-      display: block;
-      background-color: var(--pink-color);
-      opacity: 0.6;
-      border-radius: var(--rad-lg);
       position: absolute;
       top: 0;
       z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--pink-color);
+      border-radius: var(--rad-lg);
+      opacity: 0.6;
    }
 
    &:hover {
@@ -31,10 +31,15 @@ const Wrapper = styled.div`
       }
    }
 
+   @media(max-width: 576px) {
+      grid-area: unset;
+   }
+
 `;
 
 const StaticWrapper = styled(Wrapper)`
    pointer-events: none;
+
    &:before {
       display: none;
    }
@@ -45,6 +50,7 @@ const FavWrapper = styled(Wrapper)`
       & > button {
          display: flex;
       }
+
       &:before {
          z-index: 1;
       }
@@ -52,48 +58,48 @@ const FavWrapper = styled(Wrapper)`
 `;
 
 const BreedLink = styled(Link)`
-   width: 180px;
-   height: 34px;
-   border-radius: var(--rad-sm);
-   background-color: ${({theme}) => theme === 'light' ? "var(--bg-dark)" : 'var(--black-color-light)'};
-   text-decoration: none;
-   color: var(--pink-color);
-   font-size: var(--fs-md);
-   font-weight: var(--fw-light);
-   display: none;
-   justify-content: center;
-   align-items: center;
    position: absolute;
    bottom: 10px;
    left: 50%;
    transform: translateX(-50%);
    z-index: 2;
+   display: none;
+   justify-content: center;
+   align-items: center;
+   width: 180px;
+   height: 34px;
+   font-size: var(--fs-md);
+   font-weight: var(--fw-light);
+   border-radius: var(--rad-sm);
+   background-color: ${({theme}) => theme === 'light' ? "var(--bg-dark)" : 'var(--black-color-light)'};
+   text-decoration: none;
+   color: var(--pink-color);
 `;
 
 const Image = styled.img`
+   position: relative;
    width: 100%;
    height: 100%;
    object-fit: cover;
    border-radius: var(--rad-lg);
-   position: relative;
 `;
 
 const UnFavBtn = styled.button`
-   margin: 0;
-   padding: 0;
-   display: none;
-   border: none;
-   border-radius: var(--rad-sm);
-   background-color: ${({theme}) => theme === 'light' ? 'var(--white-color)' : 'var(--black-color-light)'};
-   justify-content: center;
-   align-items: center;
-   width: 40px;
-   height: 40px;
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
    z-index: 2;
+   display: none;
+   justify-content: center;
+   align-items: center;
+   width: 40px;
+   height: 40px;
+   margin: 0;
+   padding: 0;
+   border: none;
+   border-radius: var(--rad-sm);
+   background-color: ${({theme}) => theme === 'light' ? 'var(--white-color)' : 'var(--black-color-light)'};
    cursor: pointer;
 `;
 

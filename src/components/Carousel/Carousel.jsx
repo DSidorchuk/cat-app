@@ -6,18 +6,22 @@ import "./slick.css";
 import "./slick-theme.css";
 
 const DotsBox = styled.div`
-   padding: 0 12px;
-   width: 90px;
-   height: 30px;
-   border-radius: var(--rad-lg);
-   background-color: ${({theme}) => theme === 'light' ? 'var(--bg-light)' : 'var(--black-color-light)'};
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
    position: absolute;
    bottom: 15px;
    left: 50%;
    transform: translateX(-50%);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 90px;
+   height: 30px;
+   padding: 0 12px;
+   border-radius: var(--rad-lg);
+   background-color: ${({theme}) => theme === 'light' ? 'var(--bg-light)' : 'var(--black-color-light)'};
+
+   @media(max-width: 576px) {
+      bottom: 2px;
+   }
 `;
 
 const Carousel = ({photos, theme}) => {

@@ -22,6 +22,12 @@
     overflow: hidden;
 }
 
+@media (max-width: 576px) {
+    .slick-slider {
+        width: 295px;
+    }
+}
+
 .slick-list
 {
     position: relative;
